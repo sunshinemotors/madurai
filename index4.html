@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bike Accessories & Services</title>
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
+    <style>
+        /* General Styles */
+        body { font-family: Arial, sans-serif; margin:0; padding:0; line-height: 1.6; }
+        a { text-decoration: none; color: inherit; }
+        button { padding: 0.5rem 1rem; background: #007BFF; color: #fff; border: none; cursor: pointer; border-radius: 5px; transition: background 0.3s; }
+        button:hover { background: #0056b3; }
+
+        /* Header */
+        header { background: #333; color: #fff; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 10; }
+        nav a { margin: 0 1rem; color: #fff; font-weight: bold; }
+
+        /* Logo Styling */
+        .logo { 
+            font-family: 'Anton', sans-serif; 
+            font-size: 3rem; 
+            font-weight: 400; 
+            text-transform: uppercase; 
+            letter-spacing: 2px;
+            color: #FFD700; 
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.6); 
+        }
+
+        /* Hero Section */
+        .hero { position: relative; height: 60vh; width: 100%; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .hero-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); }
+        .hero-text { position: absolute; color: #fff; font-size: 2.5rem; font-weight: bold; text-align: center; z-index: 2; padding: 0 1rem; }
+        .hero-button { position: absolute; bottom: 20%; z-index: 2; padding: 0.7rem 1.5rem; font-size: 1.1rem; }
+
+        /* Sections */
+        .section { padding: 2rem; max-width: 1200px; margin: auto; }
+        h2 { text-align: center; margin-bottom: 1.5rem; }
+
+        /* Grid Cards */
+        .grid { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+        .card { border: 1px solid #ccc; padding: 1rem; width: calc(33% - 2rem); box-sizing: border-box; text-align: center; border-radius: 8px; transition: transform 0.3s; background: #fff; }
+        .card img { width: 100%; height: 200px; object-fit: cover; border-radius: 5px; }
+        .card:hover { transform: scale(1.05); }
+
+        /* Footer */
+        footer { background: #333; color: #fff; text-align: center; padding: 1.5rem; margin-top: 2rem; }
+
+        /* Modal Styles */
+        .modal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.7); opacity: 0; transition: opacity 0.3s ease; }
+        .modal.show { display: block; opacity: 1; }
+        .modal-content { background-color: #fff; margin: 5% auto; padding: 1rem; border-radius: 10px; width: 90%; max-width: 700px; position: relative; transform: translateY(-50px); opacity: 0; transition: all 0.3s ease; }
+        .modal.show .modal-content { transform: translateY(0); opacity: 1; }
+        .close { position: absolute; top: 10px; right: 20px; color: #333; font-size: 2rem; font-weight: bold; cursor: pointer; }
+        .modal iframe { width: 100%; height: 600px; border: none; border-radius: 8px; }
+
+        /* Responsive */
+        @media (max-width: 1024px) { .card { width: calc(50% - 1rem); } }
+        @media (max-width: 768px) { .hero-text { font-size: 2rem; } .card { width: 100%; } }
+        @media (max-width: 480px) { .hero-text { font-size: 1.5rem; } }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">SunShine Motors</div>
+        <nav>
+            <a href="#accessories">Accessories</a>
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <img src="bike-shop4.png" alt="Bike Shop" class="hero-img">
+        <div class="overlay"></div>
+        <div class="hero-text">Ride Smart. Accessorize Better.</div>
+    </div>
+
+    <!-- Accessories Section -->
+    <section id="accessories" class="section">
+        <h2>Featured Accessories</h2>
+        <div class="grid">
+            <div class="card">
+                <img src="mirror.jpg" alt="Side Mirror">
+                <h3>Side Mirror</h3>
+                <p>Rs.250</p>
+                <button onclick="openModal('Side Mirror')">Buy Now</button>
+            </div>
+            <div class="card">
+                <img src="battery.jpg" alt="Bike Battery">
+                <h3>Bike Battery</h3>
+                <p>Rs. 300</p>
+                <button onclick="openModal('Bike Battery')">Buy Now</button>
+            </div>
+            <div class="card">
+                <img src="light.jpg" alt="Bike Light">
+                <h3>Bike Light</h3>
+                <p>Rs. 350</p>
+                <button onclick="openModal('Bike Light')">Buy Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section">
+        <h2>Our Services</h2>
+        <div class="grid">
+            <div class="card">
+                <img src="service1.jpg" alt="Bike Repair">
+                <h3>Bike Repair</h3>
+                <p>Quick and reliable repairs for all types of bikes.</p>
+                <button onclick="openModal('Bike Repair')">Book Now</button>
+            </div>
+            <div class="card">
+                <img src="water1.jpg" alt="Maintenance">
+                <h3>Maintenance</h3>
+                <p>Keep your bike in top shape with regular maintenance.</p>
+                <button onclick="openModal('Maintenance')">Book Now</button>
+            </div>
+            <div class="card">
+                <img src="service1.jpg" alt="Custom Build">
+                <h3>Custom Builds</h3>
+                <p>Design your dream bike with our custom build service.</p>
+                <button onclick="openModal('Custom Builds')">Book Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <h2>About Us</h2>
+        <p style="text-align:center; max-width:800px; margin:auto;">
+            We are passionate about bikes and provide high-quality accessories and professional services to help you ride safely and in style. Our goal is to make your cycling experience as smooth and enjoyable as possible.
+        </p>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <h2>Contact Us</h2>
+        <p style="text-align:center;">
+            Email: info@bikeshop.com | Phone: 123-456-7890<br>
+            Address: Sandhai Pettai, Melur Tk. Madurai District.
+        </p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2025 SunShine Motors & Spares. All rights reserved.
+    </footer>
+
+    <!-- Modal Structure -->
+    <div id="formModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <iframe id="googleForm" src=""></iframe>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        const modal = document.getElementById('formModal');
+        const iframe = document.getElementById('googleForm');
+
+        function openModal(productName) {
+            const url = 'https://forms.gle/rEa419LGD3ZfdYCN9?usp=pp_url&entry.1234567890=' + encodeURIComponent(productName);
+            iframe.src = url;
+            modal.classList.add('show');
+        }
+
+        function closeModal() {
+            modal.classList.remove('show');
+            setTimeout(() => iframe.src = '', 300); // Clear iframe after fade-out
+        }
+
+        // Close modal on click outside content
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+
+</body>
+</html>
